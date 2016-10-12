@@ -206,7 +206,7 @@ namespace ExCSS.Tests
             {
                 result = parser.Parse(@"@-webkit-keyframes ixp-bounce { 100% { -webkit-transform: translateY(0); } }");
             });
-            Assert.That(result.ToString(), Is.StringContaining("transform"));
+            Assert.That(result.ToString(), Does.Contain("transform"));
 
         }
 

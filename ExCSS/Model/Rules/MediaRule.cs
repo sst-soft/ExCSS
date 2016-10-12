@@ -36,7 +36,11 @@ namespace ExCSS
             var join = friendlyFormat ? "".NewLineIndent(true, indentation + 1) : "";
 
             var declarationList = RuleSets.Select(d => d.ToString(friendlyFormat, indentation + 1).TrimFirstLine());
+#if BUILD_FOR_UNITY
+			var declarations = string.Join(join, declarationList.ToArray());
+#else
             var declarations = string.Join(join, declarationList);
+#endif
 
             return ("@media " + _media.MediaType + "{").NewLineIndent(friendlyFormat, indentation) +
                 declarations.TrimFirstLine().NewLineIndent(friendlyFormat, indentation + 1) +
