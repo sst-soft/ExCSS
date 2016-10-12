@@ -80,9 +80,15 @@ namespace ExCSS
 
         public string ToString(bool friendlyFormat, int indentation = 0)
         {
+#if BUILD_FOR_UNITY
+			return friendlyFormat
+                ? string.Join(", ", _media.ToArray())
+                : string.Join(",", _media.ToArray());
+#else
             return friendlyFormat
                 ? string.Join(", ", _media)
                 : string.Join(",", _media);
+#endif
         }
 
         public IEnumerator<string> GetEnumerator()

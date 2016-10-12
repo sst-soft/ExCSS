@@ -41,7 +41,11 @@ namespace ExCSS
             var join = friendlyFormat ? "".NewLineIndent(true, indentation) : "";
 
             var declarationList = _ruleSets.Select(d => d.ToString(friendlyFormat, indentation + 1));
+#if BUILD_FOR_UNITY
+			var declarations = string.Join(join, declarationList.ToArray());
+#else
             var declarations = string.Join(join, declarationList);
+#endif
 
             return ("@" + _ruleName + " " + _identifier + "{").NewLineIndent(friendlyFormat, indentation) +
                 declarations.NewLineIndent(friendlyFormat, indentation) +
