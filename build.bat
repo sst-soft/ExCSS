@@ -1,10 +1,17 @@
 @ECHO OFF
 
 ECHO.
+ECHO ==[Restoring packages]==
+ECHO.
+set nuGetDir=%~dp0.nuget
+call "%nuGetDir%\nuget.exe" restore "%~dp0ExCSS.Unity.sln"
+if ERRORLEVEL 1 exit 1
+
+ECHO.
 ECHO ==[Building library]==
 ECHO.
 set msBuildDir=%WINDIR%\Microsoft.NET\Framework\v4.0.30319
-call %msBuildDir%\msbuild.exe ExCSS.Unity.sln  /p:Configuration=Release /l:FileLogger,Microsoft.Build.Engine;logfile=Manual_MSBuild_ReleaseVersion_LOG.log
+call "%msBuildDir%\msbuild.exe" ExCSS.Unity.sln  /p:Configuration=Release /l:FileLogger,Microsoft.Build.Engine;logfile=Manual_MSBuild_ReleaseVersion_LOG.log
 if ERRORLEVEL 1 exit 1
 
 ECHO.
