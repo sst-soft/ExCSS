@@ -11,6 +11,14 @@ namespace ExCSS
         private BaseSelector _selector;
         private readonly StyleDeclaration _declarations;
 
+        public readonly int Line;
+        public readonly int Col;
+
+        public StyleRule(int line, int col) : this(new StyleDeclaration())
+        {
+            Line = line;
+            Col = col;
+        }
         public StyleRule() : this( new StyleDeclaration())
         {}
 

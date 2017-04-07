@@ -200,7 +200,7 @@ namespace ExCSS
                 return true;
             }
 
-            AddRuleSet(new StyleRule());
+            AddRuleSet(new StyleRule(token.Line, token.Col));
             SetParsingContext(ParsingContext.InSelector);
             ParseSelector(token);
             return true;
