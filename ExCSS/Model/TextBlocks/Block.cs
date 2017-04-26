@@ -4,7 +4,6 @@ namespace ExCSS.Model.TextBlocks
     internal abstract class Block
     {
         public int Line;
-        public int Col;
         internal GrammarSegment GrammarSegment { get;set; }
 
         internal static PipeBlock Column

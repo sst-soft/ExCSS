@@ -1224,7 +1224,6 @@ namespace ExCSS
                         yield break;
                     }
                     token.Line = _stylesheetReader.Line;
-                    token.Col = _stylesheetReader.Column;
                     _stylesheetReader.Advance();
 
                     yield return token;

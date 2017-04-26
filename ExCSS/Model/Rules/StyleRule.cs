@@ -11,13 +11,11 @@ namespace ExCSS
         private BaseSelector _selector;
         private readonly StyleDeclaration _declarations;
 
-        public readonly int Line;
-        public readonly int Col;
+        private readonly int _line;
 
-        public StyleRule(int line, int col) : this(new StyleDeclaration())
+        public StyleRule(int line) : this(new StyleDeclaration())
         {
-            Line = line;
-            Col = col;
+            _line = line;
         }
         public StyleRule() : this( new StyleDeclaration())
         {}
@@ -51,6 +49,11 @@ namespace ExCSS
         public StyleDeclaration Declarations
         {
             get { return _declarations; }
+        }
+
+        public int line
+        {
+            get { return _line; }
         }
 
         public override string ToString()
