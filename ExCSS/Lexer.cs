@@ -1223,7 +1223,7 @@ namespace ExCSS
                     {
                         yield break;
                     }
-
+                    token.Line = _stylesheetReader.Line;
                     _stylesheetReader.Advance();
 
                     yield return token;
