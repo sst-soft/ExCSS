@@ -51,7 +51,7 @@ namespace ExCSS
             get { return _declarations; }
         }
 
-        public int line
+        public int Line
         {
             get { return _line; }
         }
