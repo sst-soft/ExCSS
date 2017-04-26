@@ -12,7 +12,7 @@ namespace ExCSS.Tests
             var parser = new Parser();
             var css = parser.Parse("html{color:#000000;}");
 
-            Assert.AreEqual(css.StyleRules[0].line, 1);
+            Assert.AreEqual(css.StyleRules[0].Line, 1);
         }
 
         [Test]
@@ -31,8 +31,8 @@ namespace ExCSS.Tests
             var parser = new Parser();
             var css = parser.Parse(string.Format("{0}html{{color:#000000;}}{0}{0}div{{color:#ffffff;}}{0}{0}", lineEnding));
 
-            Assert.AreEqual(2, css.StyleRules[0].line);
-            Assert.AreEqual(4, css.StyleRules[1].line);
+            Assert.AreEqual(2, css.StyleRules[0].Line);
+            Assert.AreEqual(4, css.StyleRules[1].Line);
         }
     }
 }
