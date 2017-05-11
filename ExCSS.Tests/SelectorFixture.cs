@@ -229,6 +229,53 @@ namespace ExCSS.Tests
         }
 
         [Test]
+        public void Parser_Reads_Id_Hyphen_Elements()
+        {
+            var parser = new Parser();
+            var css = parser.Parse("E#-id{}");
+
+            var rules = css.Rules;
+
+            Assert.AreEqual("E#-id{}", rules[0].ToString());
+        }
+
+        [Test]
+        public void Parser_Reads_Id_Multiple_Hyphen_Elements()
+        {
+            var parser = new Parser();
+            var css = parser.Parse("E#--id{}");
+
+            var rules = css.Rules;
+
+            Assert.AreEqual("E#--id{}", rules[0].ToString());
+            Assert.That(css.Errors.Count == 1);
+        }
+
+        [Test]
+        public void Parser_Reads_Id_Valid_Hyphen_Elements()
+        {
+            var parser = new Parser();
+            var css = parser.Parse("E#-_id{}");
+
+            var rules = css.Rules;
+
+            Assert.AreEqual("E#-_id{}", rules[0].ToString());
+            Assert.That(css.Errors.Count == 0);
+        }
+
+        [Test]
+        public void Parser_Reads_Id_Missing_Elements()
+        {
+            var parser = new Parser();
+            var css = parser.Parse("E#-{}");
+
+            var rules = css.Rules;
+
+            Assert.AreEqual("E#-{}", rules[0].ToString());
+            Assert.That(css.Errors.Count == 1);
+        }
+
+        [Test]
         public void Parser_Reads_Descendant_Elements()
         {
             var parser = new Parser();
