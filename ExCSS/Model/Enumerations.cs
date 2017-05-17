@@ -68,6 +68,7 @@ namespace ExCSS
 
     internal static class ErrorMessages
     {
+        internal const string InvalidCharafterAfterHyphen = "Expected a letter or an underscore after the first hyphen.";
         internal const string InvalidCharacter = "Invalid character detected.";
         internal const string LineBreakEof = "Unexpected line break or EOF.";
         internal const string UnexpectedCommentToken = "The input element is unexpected and has been ignored.";

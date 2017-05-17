@@ -396,6 +396,16 @@ namespace ExCSS
         {
             if (current.IsNameStart() || current.IsDigit())
             {
+                if (current == Specification.MinusSign)
+                {
+                    char next = _stylesheetReader.Next;
+                    _stylesheetReader.Back();
+                    if (!next.IsLetter() && next != Specification.Underscore)
+                    {
+                        ErrorHandler(ParserError.InvalidCharacter, ErrorMessages.InvalidCharafterAfterHyphen);
+                    }
+                }
+
                 _buffer.Append(current);
                 return HashRest(_stylesheetReader.Next);
             }

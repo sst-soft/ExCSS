@@ -60,7 +60,7 @@
 
         internal static bool IsNameStart(this char c)
         {
-            return c >= 0x80 || IsUppercaseAscii(c) || IsLowercaseAscii(c) || c == Underscore;
+            return c >= 0x80 || IsUppercaseAscii(c) || IsLowercaseAscii(c) || c == Underscore || c == MinusSign;
         }
 
         internal static bool IsLineBreak(this char c)
