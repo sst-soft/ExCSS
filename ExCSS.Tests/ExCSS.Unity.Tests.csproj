@@ -46,7 +46,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="RuleLineFixture.cs" />
+    <Compile Include="LineFixture.cs" />
     <Compile Include="StylesheetFixture.cs" />
     <Compile Include="ParserErrorHandlerFixture.cs" />
     <Compile Include="PropertyFixture.cs" />
@@ -77,13 +77,13 @@
     <Content Include="Stylesheets\Css3Min.css" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ExCSS\ExCSS.Unity.csproj">
-      <Project>{26881075-3f64-4825-a6b5-eaa0d5419d20}</Project>
-      <Name>ExCSS.Unity</Name>
-    </ProjectReference>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\ExCSS\ExCSS.Unity.csproj">
+      <Project>{5ea8c810-4d8d-4338-adbc-e9bdd0c3f758}</Project>
+      <Name>ExCSS.Unity</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
