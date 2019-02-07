@@ -7,10 +7,12 @@ namespace ExCSS
     {
         private Term _term;
         private bool _important;
+        private int _line;
         
-        public Property(string name)
+        public Property(string name, int line)
         {
             Name = name;
+            _line = line;
         }
 
         public string Name { get; private set; }
@@ -26,6 +28,8 @@ namespace ExCSS
             get { return _important; }
             set { _important = value; }
         }
+
+        public int Line { get { return _line; } }
 
         public override string ToString()
         {

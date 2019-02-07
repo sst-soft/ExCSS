@@ -274,7 +274,7 @@ namespace ExCSS
                 return false;
             }
 
-            AddProperty(new Property(((SymbolBlock)token).Value));
+            AddProperty(new Property(((SymbolBlock)token).Value, token.Line));
             SetParsingContext(ParsingContext.AfterProperty);
             return true;
         }
