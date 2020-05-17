@@ -1,0 +1,13 @@
+name: Build ExCSS
+agent:
+    type: Unity::VM
+    image: build-system/unity-extra-windows-10:v0.1-551369
+    flavor: b1.large
+
+artifacts:
+    builds:
+        paths:
+            - builds.zip
+
+commands:
+    - build.bat
