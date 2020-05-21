@@ -43,9 +43,3 @@ if ERRORLEVEL 1 exit 1
 ECHO [Copy files to .\builds\lib\net35 dir]
 copy .\ExCSS\bin\ReleaseUnity35\*.* .\builds\lib\net35
 if ERRORLEVEL 1 exit 1
-
-ECHO.
-ECHO ==[Zip files]==
-ECHO.
-call 7z.exe a .\builds.zip .\builds
-if ERRORLEVEL 1 exit 1

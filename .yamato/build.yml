@@ -7,7 +7,7 @@ agent:
 artifacts:
     builds:
         paths:
-            - builds.zip
+            - builds/**
 
 commands:
     - build.bat
