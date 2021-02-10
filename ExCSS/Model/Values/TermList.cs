@@ -61,6 +61,28 @@ namespace ExCSS
             }
         }
 
+        public TermSeparator GetSeparatorAt(int index)
+        {
+            if (index >= _separator.Count)
+                throw new ArgumentOutOfRangeException("index");
+
+            var grammarSegment = _separator[index];
+            switch (grammarSegment)
+            {
+                case GrammarSegment.Whitespace:
+                    return TermSeparator.Space;
+
+                case GrammarSegment.Comma:
+                    return TermSeparator.Comma;
+
+                case GrammarSegment.Colon:
+                    return TermSeparator.Colon;
+                
+                default:
+                    throw new NotImplementedException();
+            }
+        }
+
         public int Length
         {
             get { return _items.Count; }
