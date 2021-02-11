@@ -1,7 +1,7 @@
 name: Build ExCSS
 agent:
     type: Unity::VM
-    image: build-system/unity-extra-windows-10:v0.1-551369
+    image: build-system/unity-extra-windows-10:latest
     flavor: b1.large
 
 artifacts:
