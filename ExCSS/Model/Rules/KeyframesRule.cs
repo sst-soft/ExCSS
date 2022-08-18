@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿// MIT License. https://github.com/sst-soft/ExCSS which is a fork of https://github.com/Unity-Technologies/ExCSS.
+
 using ExCSS.Model.Extensions;
 
 // ReSharper disable once CheckNamespace
@@ -10,7 +9,7 @@ namespace ExCSS
     {
         private readonly List<RuleSet> _ruleSets;
         private string _identifier;
-        private string _ruleName;
+        private readonly string _ruleName;
 
         public KeyframesRule(string ruleName = null)
         {
@@ -21,15 +20,12 @@ namespace ExCSS
 
         public string Identifier
         {
-            get { return _identifier; }
-            set { _identifier = value; }
+            get => _identifier;
+            set => _identifier = value;
         }
 
         //TODO change to "keyframes"
-        public List<RuleSet> Declarations
-        {
-            get { return _ruleSets; }
-        }
+        public List<RuleSet> Declarations => _ruleSets;
 
         public override string ToString()
         {
@@ -40,7 +36,7 @@ namespace ExCSS
         {
             var join = friendlyFormat ? "".NewLineIndent(true, indentation) : "";
 
-            var declarationList = _ruleSets.Select(d => d.ToString(friendlyFormat, indentation + 1));
+            IEnumerable<string> declarationList = _ruleSets.Select(d => d.ToString(friendlyFormat, indentation + 1));
 #if BUILD_FOR_UNITY
 			var declarations = string.Join(join, declarationList.ToArray());
 #else

@@ -1,4 +1,6 @@
-﻿using ExCSS.Model;
+﻿// MIT License. https://github.com/sst-soft/ExCSS which is a fork of https://github.com/Unity-Technologies/ExCSS.
+
+using ExCSS.Model;
 using ExCSS.Model.Extensions;
 
 // ReSharper disable once CheckNamespace
@@ -9,22 +11,19 @@ namespace ExCSS
         private string _href;
         private readonly MediaTypeList _media;
 
-        public ImportRule() 
+        public ImportRule()
         {
             _media = new MediaTypeList();
             RuleType = RuleType.Import;
         }
-      
+
         public string Href
         {
-            get { return _href; }
-            set { _href = value; }
+            get => _href;
+            set => _href = value;
         }
 
-        public MediaTypeList Media
-        {
-            get { return _media; }
-        }
+        public MediaTypeList Media => _media;
 
         public override string ToString()
         {

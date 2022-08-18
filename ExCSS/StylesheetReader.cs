@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using System.IO;
+﻿// MIT License. https://github.com/sst-soft/ExCSS which is a fork of https://github.com/Unity-Technologies/ExCSS.
+
 using System.Text;
 using ExCSS.Model;
 
@@ -9,11 +9,11 @@ namespace ExCSS
     {
         private int _insertion;
         private readonly Stack<int> _collengths;
-        private TextReader _reader;
+        private readonly TextReader _reader;
         private readonly StringBuilder _buffer;
         private bool _lineWithReturn;
 
-        StylesheetReader()
+        private StylesheetReader()
         {
             _buffer = new StringBuilder();
             _collengths = new Stack<int>();
@@ -33,10 +33,7 @@ namespace ExCSS
             ReadCurrent();
         }
 
-        internal bool IsBeginning
-        {
-            get { return _insertion < 2; }
-        }
+        internal bool IsBeginning => _insertion < 2;
 
         internal int Line { get; private set; }
 
@@ -44,10 +41,7 @@ namespace ExCSS
 
         internal bool IsEnded { get; private set; }
 
-        internal bool IsEnding
-        {
-            get { return Current == Specification.EndOfFile; }
-        }
+        internal bool IsEnding => Current == Specification.EndOfFile;
 
         internal char Current { get; private set; }
 

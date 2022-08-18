@@ -1,9 +1,10 @@
-﻿
+﻿// MIT License. https://github.com/sst-soft/ExCSS which is a fork of https://github.com/Unity-Technologies/ExCSS.
+
 namespace ExCSS.Model.TextBlocks
 {
     internal class SymbolBlock : Block
     {
-        SymbolBlock(GrammarSegment type)
+        private SymbolBlock(GrammarSegment type)
         {
             GrammarSegment = type;
         }

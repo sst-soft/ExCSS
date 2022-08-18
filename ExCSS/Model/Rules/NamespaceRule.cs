@@ -1,4 +1,6 @@
-﻿using ExCSS.Model.Extensions;
+﻿// MIT License. https://github.com/sst-soft/ExCSS which is a fork of https://github.com/Unity-Technologies/ExCSS.
+
+using ExCSS.Model.Extensions;
 // ReSharper disable once CheckNamespace
 
 
@@ -6,7 +8,7 @@ namespace ExCSS
 {
     public class NamespaceRule : RuleSet
     {
-        public NamespaceRule() 
+        public NamespaceRule()
         {
             RuleType = RuleType.Namespace;
         }

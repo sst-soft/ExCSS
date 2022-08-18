@@ -1,4 +1,6 @@
-﻿namespace ExCSS.Model.TextBlocks
+﻿// MIT License. https://github.com/sst-soft/ExCSS which is a fork of https://github.com/Unity-Technologies/ExCSS.
+
+namespace ExCSS.Model.TextBlocks
 {
     internal class DelimiterBlock : CharacterBlock
     {

@@ -1,6 +1,6 @@
-﻿using System;
+﻿// MIT License. https://github.com/sst-soft/ExCSS which is a fork of https://github.com/Unity-Technologies/ExCSS.
+
 using System.Collections;
-using System.Collections.Generic;
 using System.Text;
 
 // ReSharper disable once CheckNamespace
@@ -23,7 +23,7 @@ namespace ExCSS
 
         public string Value
         {
-            get { return _getter(); }
+            get => _getter();
             set
             {
                 Update(value);
@@ -79,17 +79,17 @@ namespace ExCSS
         }
 
         public string ToString(bool friendlyFormat, int indentation = 0)
-        { 
+        {
             var builder = new StringBuilder();
 
-            foreach (var property in _properties)
+            foreach (Property property in _properties)
             {
                 if (friendlyFormat)
                 {
                     builder.Append(Environment.NewLine);
                 }
 
-                builder.Append(property.ToString(friendlyFormat, indentation+1)).Append(';');
+                builder.Append(property.ToString(friendlyFormat, indentation + 1)).Append(';');
             }
 
             return builder.ToString();
@@ -104,7 +104,7 @@ namespace ExCSS
                     continue;
                 }
 
-                var value = _properties[i].Term;
+                Term value = _properties[i].Term;
 
                 _properties.RemoveAt(i);
                 Propagate();
@@ -135,18 +135,15 @@ namespace ExCSS
 
         public Property this[int index]
         {
-            get { return _properties[index]; }
-            set { _properties[index] = value; }
+            get => _properties[index];
+            set => _properties[index] = value;
         }
 
-        public List<Property> Properties
-        {
-            get { return _properties; }
-        }
+        public List<Property> Properties => _properties;
 
-        public int Count { get { return _properties.Count; } }
+        public int Count => _properties.Count;
 
-        public bool IsReadOnly { get { return false; } }
+        public bool IsReadOnly => false;
 
         internal StyleDeclaration SetProperty(string propertyName, string propertyValue)
         {
@@ -163,7 +160,7 @@ namespace ExCSS
                 return;
             }
 
-            var rules = Parser.ParseDeclarations(value ?? string.Empty).Properties;
+            List<Property> rules = Parser.ParseDeclarations(value ?? string.Empty).Properties;
 
             _properties.Clear();
             _properties.AddRange(rules);

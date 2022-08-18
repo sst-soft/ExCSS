@@ -1,7 +1,5 @@
-﻿// ReSharper disable once CheckNamespace
+﻿// MIT License. https://github.com/sst-soft/ExCSS which is a fork of https://github.com/Unity-Technologies/ExCSS.
 
-using System;
-using System.Linq;
 using System.Text;
 using ExCSS.Model;
 
@@ -46,14 +44,20 @@ namespace ExCSS
             var sb = new StringBuilder();
             sb.Append(_text).Append("{");
             sb.Append(Declarations.ToString(friendlyFormat, indentation));
-            foreach (var rule in  RuleSets)
+            foreach (RuleSet rule in RuleSets)
             {
                 if (friendlyFormat)
+                {
                     sb.AppendLine();
+                }
+
                 sb.Append(rule.ToString(friendlyFormat, indentation));
             }
             if (friendlyFormat)
+            {
                 sb.AppendLine();
+            }
+
             sb.Append("}");
             return sb.ToString();
         }

@@ -1,5 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿// MIT License. https://github.com/sst-soft/ExCSS which is a fork of https://github.com/Unity-Technologies/ExCSS.
+
+using System.Collections;
 
 // ReSharper disable once CheckNamespace
 namespace ExCSS
@@ -13,15 +14,12 @@ namespace ExCSS
             Selectors = new List<BaseSelector>();
         }
 
-        public int Length 
-        {
-            get { return Selectors.Count; } 
-        }
+        public int Length => Selectors.Count;
 
         public BaseSelector this[int index]
         {
-            get { return Selectors[index]; }
-            set { Selectors[index] = value; }
+            get => Selectors[index];
+            set => Selectors[index] = value;
         }
 
         public SelectorList AppendSelector(BaseSelector selector)

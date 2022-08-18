@@ -1,4 +1,5 @@
-﻿using System;
+﻿// MIT License. https://github.com/sst-soft/ExCSS which is a fork of https://github.com/Unity-Technologies/ExCSS.
+
 using ExCSS.Model;
 using ExCSS.Model.Extensions;
 
@@ -17,10 +18,10 @@ namespace ExCSS
         {
             _line = line;
         }
-        public StyleRule() : this( new StyleDeclaration())
-        {}
+        public StyleRule() : this(new StyleDeclaration())
+        { }
 
-        public StyleRule(StyleDeclaration declarations) 
+        public StyleRule(StyleDeclaration declarations)
         {
             RuleType = RuleType.Style;
             _declarations = declarations;
@@ -28,7 +29,7 @@ namespace ExCSS
 
         public BaseSelector Selector
         {
-            get { return _selector; }
+            get => _selector;
             set
             {
                 _selector = value;
@@ -38,7 +39,7 @@ namespace ExCSS
 
         public string Value
         {
-            get { return _value; }
+            get => _value;
             set
             {
                 _selector = Parser.ParseSelector(value);
@@ -46,15 +47,9 @@ namespace ExCSS
             }
         }
 
-        public StyleDeclaration Declarations
-        {
-            get { return _declarations; }
-        }
+        public StyleDeclaration Declarations => _declarations;
 
-        public int Line
-        {
-            get { return _line; }
-        }
+        public int Line => _line;
 
         public override string ToString()
         {

@@ -1,4 +1,5 @@
-﻿
+﻿// MIT License. https://github.com/sst-soft/ExCSS which is a fork of https://github.com/Unity-Technologies/ExCSS.
+
 namespace ExCSS.Model.TextBlocks
 {
     internal class SpecialCharacter : CharacterBlock
@@ -8,11 +9,11 @@ namespace ExCSS.Model.TextBlocks
         internal static readonly SpecialCharacter Semicolon = new SpecialCharacter(Specification.Simicolon, GrammarSegment.Semicolon);
         internal static readonly SpecialCharacter Whitespace = new SpecialCharacter(Specification.Space, GrammarSegment.Whitespace);
 
-        SpecialCharacter(char specialCharacter, GrammarSegment type) : base(specialCharacter)
+        private SpecialCharacter(char specialCharacter, GrammarSegment type) : base(specialCharacter)
         {
             GrammarSegment = type;
         }
-        
+
         public override string ToString()
         {
             return Value.ToString();

@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿// MIT License. https://github.com/sst-soft/ExCSS which is a fork of https://github.com/Unity-Technologies/ExCSS.
+
 using System.Globalization;
 using System.Text;
 using ExCSS.Model;
@@ -8,7 +8,7 @@ using ExCSS.Model.TextBlocks;
 // ReSharper disable once CheckNamespace
 namespace ExCSS
 {
-    sealed class Lexer
+    internal sealed class Lexer
     {
         private readonly StringBuilder _buffer;
         private readonly StylesheetReader _stylesheetReader;
@@ -254,7 +254,9 @@ namespace ExCSS
                         current = _stylesheetReader.Next;
 
                         if (current.IsHex() || current == Specification.QuestionMark)
+                        {
                             return UnicodeRange(current);
+                        }
 
                         current = _stylesheetReader.Previous;
                     }
@@ -398,7 +400,7 @@ namespace ExCSS
             {
                 if (current == Specification.MinusSign)
                 {
-                    char next = _stylesheetReader.Next;
+                    var next = _stylesheetReader.Next;
                     _stylesheetReader.Back();
                     if (!next.IsLetter() && next != Specification.Underscore)
                     {
@@ -1168,7 +1170,7 @@ namespace ExCSS
                 return current.ToString();
             }
 
-            var escape = new List<Char>();
+            var escape = new List<char>();
 
             for (var i = 0; i < 6; i++)
             {
@@ -1183,7 +1185,7 @@ namespace ExCSS
 
             current = _stylesheetReader.Previous;
             var code = int.Parse(new string(escape.ToArray()), NumberStyles.HexNumber);
-            return Char.ConvertFromUtf32(code);
+            return char.ConvertFromUtf32(code);
         }
 
         private bool IsValidEscape(char current)
@@ -1206,20 +1208,17 @@ namespace ExCSS
 
         internal bool IgnoreWhitespace
         {
-            get { return _ignoreWhitespace; }
-            set { _ignoreWhitespace = value; }
+            get => _ignoreWhitespace;
+            set => _ignoreWhitespace = value;
         }
 
         internal bool IgnoreComments
         {
-            get { return _ignoreComments; }
-            set { _ignoreComments = value; }
+            get => _ignoreComments;
+            set => _ignoreComments = value;
         }
 
-        internal StylesheetReader Stream
-        {
-            get { return _stylesheetReader; }
-        }
+        internal StylesheetReader Stream => _stylesheetReader;
 
         internal IEnumerable<Block> Tokens
         {
@@ -1227,7 +1226,7 @@ namespace ExCSS
             {
                 while (true)
                 {
-                    var token = DataBlock(_stylesheetReader.Current);
+                    Block token = DataBlock(_stylesheetReader.Current);
 
                     if (token == null)
                     {

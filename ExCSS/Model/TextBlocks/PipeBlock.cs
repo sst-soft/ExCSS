@@ -1,4 +1,5 @@
-﻿
+﻿// MIT License. https://github.com/sst-soft/ExCSS which is a fork of https://github.com/Unity-Technologies/ExCSS.
+
 namespace ExCSS.Model.TextBlocks
 {
     internal class PipeBlock : Block
@@ -10,15 +11,12 @@ namespace ExCSS.Model.TextBlocks
             TokenBlock = new PipeBlock();
         }
 
-        PipeBlock()
+        private PipeBlock()
         {
             GrammarSegment = GrammarSegment.Column;
         }
 
-        internal static PipeBlock Token
-        {
-            get { return TokenBlock; }
-        }
+        internal static PipeBlock Token => TokenBlock;
 
         public override string ToString()
         {

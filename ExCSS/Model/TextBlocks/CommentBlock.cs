@@ -1,4 +1,5 @@
-﻿
+﻿// MIT License. https://github.com/sst-soft/ExCSS which is a fork of https://github.com/Unity-Technologies/ExCSS.
+
 namespace ExCSS.Model.TextBlocks
 {
     internal class CommentBlock : Block
@@ -12,20 +13,14 @@ namespace ExCSS.Model.TextBlocks
             CloseBlock = new CommentBlock { GrammarSegment = GrammarSegment.CommentClose };
         }
 
-        CommentBlock()
+        private CommentBlock()
         {
         }
 
 
-        internal static CommentBlock Open
-        {
-            get { return OpenBlock; }
-        }
+        internal static CommentBlock Open => OpenBlock;
 
-        internal static CommentBlock Close
-        {
-            get { return CloseBlock; }
-        }
+        internal static CommentBlock Close => CloseBlock;
 
         public override string ToString()
         {

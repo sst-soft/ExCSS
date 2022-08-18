@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿// MIT License. https://github.com/sst-soft/ExCSS which is a fork of https://github.com/Unity-Technologies/ExCSS.
 
 namespace ExCSS.Model
 {
@@ -15,15 +14,12 @@ namespace ExCSS.Model
             _function = function;
         }
 
-        public List<Term> TermList
-        {
-            get { return _termList; }
-        }
+        public List<Term> TermList => _termList;
 
         public Term Term
         {
-            get { return _term; }
-            set { _term = value; }
+            get => _term;
+            set => _term = value;
         }
 
         public void Include()
@@ -106,27 +102,27 @@ namespace ExCSS.Model
 
         private static bool CheckNumber(Term cssValue)
         {
-            return (cssValue is PrimitiveTerm && 
+            return (cssValue is PrimitiveTerm &&
                     ((PrimitiveTerm)cssValue).PrimitiveType == UnitType.Number);
         }
 
         private static bool CheckPercentage(Term cssValue)
         {
             return (cssValue is PrimitiveTerm &&
-                    (((PrimitiveTerm)cssValue).PrimitiveType == UnitType.Number || 
+                    (((PrimitiveTerm)cssValue).PrimitiveType == UnitType.Number ||
                     ((PrimitiveTerm)cssValue).PrimitiveType == UnitType.Percentage));
         }
 
-        private static Single ToSingle(Term cssValue, UnitType asType = UnitType.Number)
+        private static float ToSingle(Term cssValue, UnitType asType = UnitType.Number)
         {
             var value = ((PrimitiveTerm)cssValue).GetFloatValue(asType);
-                
-            return value.HasValue 
-                ? value.Value 
+
+            return value.HasValue
+                ? value.Value
                 : 0f;
         }
 
-        private static byte ToByte(Single? value)
+        private static byte ToByte(float? value)
         {
             if (value.HasValue)
             {

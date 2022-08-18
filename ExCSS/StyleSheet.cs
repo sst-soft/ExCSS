@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿// MIT License. https://github.com/sst-soft/ExCSS which is a fork of https://github.com/Unity-Technologies/ExCSS.
+
 using System.Text;
 using ExCSS.Model.Extensions;
 
@@ -17,10 +16,7 @@ namespace ExCSS
             Errors = new List<StylesheetParseError>();
         }
 
-        public List<RuleSet> Rules
-        {
-            get { return _rules; }
-        }
+        public List<RuleSet> Rules => _rules;
 
         public StyleSheet RemoveRule(int index)
         {
@@ -39,85 +35,29 @@ namespace ExCSS
                 return this;
             }
 
-            var value = Parser.ParseRule(rule);
+            RuleSet value = Parser.ParseRule(rule);
             _rules.Insert(index, value);
 
             return this;
         }
 
-        public IList<StyleRule> StyleRules
-        {
-            get
-            {
-                return Rules.Where(r => r is StyleRule).Cast<StyleRule>().ToList();
-            }
-        } 
+        public IList<StyleRule> StyleRules => Rules.Where(r => r is StyleRule).Cast<StyleRule>().ToList();
 
-        public IList<CharacterSetRule> CharsetDirectives
-        {
-            get
-            {
-                return GetDirectives<CharacterSetRule>(RuleType.Charset);
-            }
-        }
+        public IList<CharacterSetRule> CharsetDirectives => GetDirectives<CharacterSetRule>(RuleType.Charset);
 
-        public IList<ImportRule> ImportDirectives
-        {
-            get
-            {
-                return GetDirectives<ImportRule>(RuleType.Import);
-            }
-        }
+        public IList<ImportRule> ImportDirectives => GetDirectives<ImportRule>(RuleType.Import);
 
-        public IList<FontFaceRule> FontFaceDirectives
-        {
-            get
-            {
-                return GetDirectives<FontFaceRule>(RuleType.FontFace);
-            }
-        }
+        public IList<FontFaceRule> FontFaceDirectives => GetDirectives<FontFaceRule>(RuleType.FontFace);
 
-        public IList<KeyframesRule> KeyframeDirectives
-        {
-            get
-            {
-                return GetDirectives<KeyframesRule>(RuleType.Keyframes);
-            }
-        }
+        public IList<KeyframesRule> KeyframeDirectives => GetDirectives<KeyframesRule>(RuleType.Keyframes);
 
-        public IList<MediaRule> MediaDirectives
-        {
-            get
-            {
-                return GetDirectives<MediaRule>(RuleType.Media);
+        public IList<MediaRule> MediaDirectives => GetDirectives<MediaRule>(RuleType.Media);
 
-            }
-        }
+        public IList<PageRule> PageDirectives => GetDirectives<PageRule>(RuleType.Page);
 
-        public IList<PageRule> PageDirectives
-        {
-            get
-            {
-                return GetDirectives<PageRule>(RuleType.Page);
+        public IList<SupportsRule> SupportsDirectives => GetDirectives<SupportsRule>(RuleType.Supports);
 
-            }
-        }
-
-        public IList<SupportsRule> SupportsDirectives
-        {
-            get
-            {
-                return GetDirectives<SupportsRule>(RuleType.Supports);
-            }
-        }
-
-        public IList<NamespaceRule> NamespaceDirectives
-        {
-            get
-            {
-                return GetDirectives<NamespaceRule>(RuleType.Namespace);
-            }
-        }
+        public IList<NamespaceRule> NamespaceDirectives => GetDirectives<NamespaceRule>(RuleType.Namespace);
 
         private IList<T> GetDirectives<T>(RuleType ruleType)
         {
@@ -135,7 +75,7 @@ namespace ExCSS
         {
             var builder = new StringBuilder();
 
-            foreach (var rule in _rules)
+            foreach (RuleSet rule in _rules)
             {
                 builder.Append(rule.ToString(friendlyFormat, indentation).TrimStart() + (friendlyFormat ? Environment.NewLine : ""));
             }

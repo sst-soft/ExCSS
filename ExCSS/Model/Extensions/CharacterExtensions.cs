@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+﻿// MIT License. https://github.com/sst-soft/ExCSS which is a fork of https://github.com/Unity-Technologies/ExCSS.
 
 namespace ExCSS.Model.Extensions
 {
-    static class CharacterExtensions
+    internal static class CharacterExtensions
     {
         public static int FromHex(this char character)
         {

@@ -1,5 +1,6 @@
+// MIT License. https://github.com/sst-soft/ExCSS which is a fork of https://github.com/Unity-Technologies/ExCSS.
+
 using System.Collections;
-using System.Collections.Generic;
 using ExCSS.Model.Extensions;
 
 // ReSharper disable once CheckNamespace
@@ -27,20 +28,14 @@ namespace ExCSS
 
                 return _media[index];
             }
-            set
-            {
-                _media[index] = value;
-            }
+            set => _media[index] = value;
         }
 
-        public int Count
-        {
-            get { return _media.Count; }
-        }
+        public int Count => _media.Count;
 
         public string MediaType
         {
-            get { return _buffer; }
+            get => _buffer;
             set
             {
                 _buffer = string.Empty;
@@ -93,7 +88,7 @@ namespace ExCSS
 
         public IEnumerator<string> GetEnumerator()
         {
-            return ((IEnumerable<string>) _media).GetEnumerator();
+            return ((IEnumerable<string>)_media).GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()

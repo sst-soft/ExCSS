@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿// MIT License. https://github.com/sst-soft/ExCSS which is a fork of https://github.com/Unity-Technologies/ExCSS.
+
+using System.Text;
 
 // ReSharper disable once CheckNamespace
 namespace ExCSS
@@ -9,7 +11,7 @@ namespace ExCSS
         {
             var multiple = new MultipleSelectorList();
 
-            foreach (var selector in selectors)
+            foreach (SimpleSelector selector in selectors)
             {
                 multiple.Selectors.Add(selector);
             }

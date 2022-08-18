@@ -1,7 +1,7 @@
-﻿using System;
-using System.Text;
-using System.Collections.Generic;
+﻿// MIT License. https://github.com/sst-soft/ExCSS which is a fork of https://github.com/Unity-Technologies/ExCSS.
+
 using System.Collections;
+using System.Text;
 
 // ReSharper disable once CheckNamespace
 namespace ExCSS
@@ -25,16 +25,13 @@ namespace ExCSS
         {
             return _selectors.GetEnumerator();
         }
-       
+
         internal void ConcludeSelector(BaseSelector selector)
         {
             _selectors.Add(new CombinatorSelector { Selector = selector });
         }
 
-        public int Length
-        {
-            get { return _selectors.Count; }
-        }
+        public int Length => _selectors.Count;
 
         IEnumerator IEnumerable.GetEnumerator()
         {

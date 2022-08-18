@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿// MIT License. https://github.com/sst-soft/ExCSS which is a fork of https://github.com/Unity-Technologies/ExCSS.
 
 namespace ExCSS.Model.TextBlocks
 {
@@ -9,10 +9,7 @@ namespace ExCSS.Model.TextBlocks
             GrammarSegment = GrammarSegment.Range;
         }
 
-        internal bool IsEmpty
-        {
-            get { return SelectedRange == null || SelectedRange.Length == 0; }
-        }
+        internal bool IsEmpty => SelectedRange == null || SelectedRange.Length == 0;
 
         internal string[] SelectedRange { get; private set; }
 
@@ -27,7 +24,7 @@ namespace ExCSS.Model.TextBlocks
 
             if (end == null)
             {
-                SelectedRange = new [] { char.ConvertFromUtf32(startValue) };
+                SelectedRange = new[] { char.ConvertFromUtf32(startValue) };
             }
             else
             {
@@ -62,7 +59,7 @@ namespace ExCSS.Model.TextBlocks
                 return "#" + char.ConvertToUtf32(SelectedRange[0], 0).ToString("x");
             }
 
-            return "#" + char.ConvertToUtf32(SelectedRange[0], 0).ToString("x") + "-#" + 
+            return "#" + char.ConvertToUtf32(SelectedRange[0], 0).ToString("x") + "-#" +
                 char.ConvertToUtf32(SelectedRange[SelectedRange.Length - 1], 0).ToString("x");
         }
     }

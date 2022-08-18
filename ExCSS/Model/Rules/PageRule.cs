@@ -1,4 +1,6 @@
-﻿using ExCSS.Model;
+﻿// MIT License. https://github.com/sst-soft/ExCSS which is a fork of https://github.com/Unity-Technologies/ExCSS.
+
+using ExCSS.Model;
 using ExCSS.Model.Extensions;
 
 // ReSharper disable once CheckNamespace
@@ -10,7 +12,7 @@ namespace ExCSS
         private BaseSelector _selector;
         private string _selectorText;
 
-        public PageRule() 
+        public PageRule()
         {
             _declarations = new StyleDeclaration();
             RuleType = RuleType.Page;
@@ -24,7 +26,7 @@ namespace ExCSS
 
         public BaseSelector Selector
         {
-            get { return _selector; }
+            get => _selector;
             set
             {
                 _selector = value;
@@ -32,10 +34,7 @@ namespace ExCSS
             }
         }
 
-        public StyleDeclaration Declarations
-        {
-            get { return _declarations; }
-        }
+        public StyleDeclaration Declarations => _declarations;
 
         public override string ToString()
         {

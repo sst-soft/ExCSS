@@ -1,4 +1,5 @@
-﻿using System;
+﻿// MIT License. https://github.com/sst-soft/ExCSS which is a fork of https://github.com/Unity-Technologies/ExCSS.
+
 using System.Text;
 
 namespace ExCSS.Model
@@ -388,7 +389,9 @@ namespace ExCSS.Model
         internal static Encoding Suggest(string local)
         {
             if (local.Length < 2)
+            {
                 return Encoding.UTF8;
+            }
 
             var firstTwo = local.Substring(0, 2).ToLower();
 

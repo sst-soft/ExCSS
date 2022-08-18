@@ -1,4 +1,5 @@
-﻿
+﻿// MIT License. https://github.com/sst-soft/ExCSS which is a fork of https://github.com/Unity-Technologies/ExCSS.
+
 namespace ExCSS.Model.TextBlocks
 {
     internal abstract class CharacterBlock : Block
@@ -15,9 +16,6 @@ namespace ExCSS.Model.TextBlocks
             _value = value;
         }
 
-        internal char Value
-        {
-            get { return _value; }
-        }
+        internal char Value => _value;
     }
 }

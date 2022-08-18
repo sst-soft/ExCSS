@@ -1,5 +1,5 @@
-﻿using System;
-using System.Linq;
+﻿// MIT License. https://github.com/sst-soft/ExCSS which is a fork of https://github.com/Unity-Technologies/ExCSS.
+
 using System.Text;
 using ExCSS.Model;
 using ExCSS.Model.TextBlocks;
@@ -431,29 +431,37 @@ namespace ExCSS
             switch (token.GrammarSegment)
             {
                 case GrammarSegment.ParenClose:
-                {
-                    var functionBuffer = _functionBuffers.Pop().Done();
-                    if (_functionBuffers.Any()) return AddTerm(functionBuffer);
+                    {
+                        Term functionBuffer = _functionBuffers.Pop().Done();
+                        if (_functionBuffers.Any())
+                        {
+                            return AddTerm(functionBuffer);
+                        }
 
                         SetParsingContext(ParsingContext.InSingleValue);
-                    return AddTerm(functionBuffer);
-                }
+                        return AddTerm(functionBuffer);
+                    }
                 case GrammarSegment.Whitespace:
-                {
-                    if (!_functionBuffers.Any()) return AddTerm(new Whitespace());
+                    {
+                        if (!_functionBuffers.Any())
+                        {
+                            return AddTerm(new Whitespace());
+                        }
 
-                    var functionBuffer = _functionBuffers.Peek();
-                    var lastTerm = functionBuffer.TermList.LastOrDefault();
+                        FunctionBuffer functionBuffer = _functionBuffers.Peek();
+                        Term lastTerm = functionBuffer.TermList.LastOrDefault();
 
-                    if (lastTerm is Comma || lastTerm is Whitespace)
-                        return true;
+                        if (lastTerm is Comma || lastTerm is Whitespace)
+                        {
+                            return true;
+                        }
 
-                    return AddTerm(new Whitespace());
-                }
+                        return AddTerm(new Whitespace());
+                    }
 
                 case GrammarSegment.Comma:
                     return AddTerm(new Comma());
-					
+
                 case GrammarSegment.Delimiter:
                     return AddTerm(new EqualSign());
 
@@ -586,10 +594,12 @@ namespace ExCSS
 
         private bool ParseSingleValueHexColor(string color)
         {
-            HtmlColor htmlColor;
 
-            if (HtmlColor.TryFromHex(color, out htmlColor))
+            if (HtmlColor.TryFromHex(color, out HtmlColor htmlColor))
+            {
                 return AddTerm(htmlColor);
+            }
+
             return false;
         }
 
@@ -698,7 +708,7 @@ namespace ExCSS
 
             return ParseKeyframeText(token);
         }
-        
+
         private KeyframeRule _frame;
         private bool ParseKeyframeText(Block token)
         {
@@ -732,7 +742,7 @@ namespace ExCSS
             {
                 _frame.AddValue(token.ToString());
             }
-      
+
             return true;
         }
         #endregion
@@ -802,7 +812,11 @@ namespace ExCSS
         {
             SetParsingContext(ParsingContext.AfterDocumentFunction);
 
-            if (token.GrammarSegment != GrammarSegment.String) return false;
+            if (token.GrammarSegment != GrammarSegment.String)
+            {
+                return false;
+            }
+
             CastRuleSet<DocumentRule>().Conditions.Add(Tuple.Create(DocumentFunction.RegExp, ((StringBlock)token).Value));
             return true;
         }

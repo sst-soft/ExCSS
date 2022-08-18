@@ -1,4 +1,5 @@
-﻿using System;
+﻿// MIT License. https://github.com/sst-soft/ExCSS which is a fork of https://github.com/Unity-Technologies/ExCSS.
+
 using System.Globalization;
 
 namespace ExCSS.Model.TextBlocks
@@ -13,11 +14,8 @@ namespace ExCSS.Model.TextBlocks
             GrammarSegment = GrammarSegment.Number;
         }
 
-        public Single Value
-        {
-            get { return Single.Parse(_data, CultureInfo.InvariantCulture); }
-        }
-        
+        public float Value => float.Parse(_data, CultureInfo.InvariantCulture);
+
         public override string ToString()
         {
             return _data;

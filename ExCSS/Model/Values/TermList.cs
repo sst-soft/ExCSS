@@ -1,6 +1,6 @@
-﻿using System;
+﻿// MIT License. https://github.com/sst-soft/ExCSS which is a fork of https://github.com/Unity-Technologies/ExCSS.
+
 using System.Collections;
-using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Text;
 
@@ -17,7 +17,7 @@ namespace ExCSS
         }
 
         public TermList(params Term[] terms)
-            : this(TermSeparator.Comma,terms)
+            : this(TermSeparator.Comma, terms)
         {
         }
 
@@ -64,9 +64,11 @@ namespace ExCSS
         public TermSeparator GetSeparatorAt(int index)
         {
             if (index >= _separator.Count)
+            {
                 throw new ArgumentOutOfRangeException("index");
+            }
 
-            var grammarSegment = _separator[index];
+            GrammarSegment grammarSegment = _separator[index];
             switch (grammarSegment)
             {
                 case GrammarSegment.Whitespace:
@@ -77,25 +79,16 @@ namespace ExCSS
 
                 case GrammarSegment.Colon:
                     return TermSeparator.Colon;
-                
+
                 default:
                     throw new NotImplementedException();
             }
         }
 
-        public int Length
-        {
-            get { return _items.Count; }
-        }
+        public int Length => _items.Count;
 
         [IndexerName("ListItems")]
-        public Term this [int index]
-        {
-            get
-            {
-                return index >= 0 && index < _items.Count ? _items[index] : null;
-            }
-        }
+        public Term this[int index] => index >= 0 && index < _items.Count ? _items[index] : null;
 
         public Term Item(int index)
         {
@@ -115,7 +108,10 @@ namespace ExCSS
             {
                 builder.Append(_items[i]);
 
-                if (_separator.Count - 1 < i) continue;
+                if (_separator.Count - 1 < i)
+                {
+                    continue;
+                }
 
                 switch (_separator[i])
                 {
@@ -158,9 +154,13 @@ namespace ExCSS
         internal void SetLastTerm(Term term)
         {
             if (Length == 0)
+            {
                 AddTerm(term);
+            }
             else
+            {
                 _items[Length - 1] = term;
+            }
         }
         #endregion
     }

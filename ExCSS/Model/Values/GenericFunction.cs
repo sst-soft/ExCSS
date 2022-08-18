@@ -1,6 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Text;
-using ExCSS.Model;
+﻿// MIT License. https://github.com/sst-soft/ExCSS which is a fork of https://github.com/Unity-Technologies/ExCSS.
+
 
 // ReSharper disable once CheckNamespace
 namespace ExCSS
@@ -14,7 +13,7 @@ namespace ExCSS
         {
             Name = name;
             var list = new TermList();
-            foreach (var term in arguments)
+            foreach (Term term in arguments)
             {
                 list.AddTerm(term);
             }

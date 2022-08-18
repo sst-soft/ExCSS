@@ -1,6 +1,6 @@
-﻿using System;
+﻿// MIT License. https://github.com/sst-soft/ExCSS which is a fork of https://github.com/Unity-Technologies/ExCSS.
+
 using System.Globalization;
-using System.Runtime.InteropServices;
 using ExCSS.Model;
 using ExCSS.Model.Extensions;
 
@@ -30,7 +30,7 @@ namespace ExCSS
             G = g;
         }
 
-        public HtmlColor(Double a, byte r, byte g, byte b)
+        public HtmlColor(double a, byte r, byte g, byte b)
         {
             A = (byte)Math.Max(Math.Min(Math.Ceiling(255 * a), 255), 0);
             R = r;
@@ -38,12 +38,12 @@ namespace ExCSS
             G = g;
         }
 
-        public static HtmlColor FromRgba(byte r, byte g, byte b, Single a)
+        public static HtmlColor FromRgba(byte r, byte g, byte b, float a)
         {
             return new HtmlColor(a, r, g, b);
         }
 
-        public static HtmlColor FromRgba(byte r, byte g, byte b, Double a)
+        public static HtmlColor FromRgba(byte r, byte g, byte b, double a)
         {
             return new HtmlColor(a, r, g, b);
         }
@@ -53,15 +53,15 @@ namespace ExCSS
             return new HtmlColor(r, g, b);
         }
 
-        public static HtmlColor FromHsl(Single h, Single s, Single l)
+        public static HtmlColor FromHsl(float h, float s, float l)
         {
-            const Single third = 1f / 3f;
+            const float third = 1f / 3f;
 
             var m2 = l <= 0.5f ? (l * (s + 1f)) : (l + s - l * s);
             var m1 = 2f * l - m2;
-            var r = (Byte)Math.Round(255 * HueToRgb(m1, m2, h + third));
-            var g = (Byte)Math.Round(255 * HueToRgb(m1, m2, h));
-            var b = (Byte)Math.Round(255 * HueToRgb(m1, m2, h - third));
+            var r = (byte)Math.Round(255 * HueToRgb(m1, m2, h + third));
+            var g = (byte)Math.Round(255 * HueToRgb(m1, m2, h));
+            var b = (byte)Math.Round(255 * HueToRgb(m1, m2, h - third));
             return new HtmlColor(r, g, b);
         }
 
@@ -74,19 +74,19 @@ namespace ExCSS
 
                 var g = color[1].FromHex();
                 g += g * 16;
-                
+
                 var b = color[2].FromHex();
                 b += b * 16;
 
                 return new HtmlColor((byte)r, (byte)g, (byte)b);
             }
-           
+
             if (color.Length == 6)
             {
                 var r = 16 * color[0].FromHex();
                 var g = 16 * color[2].FromHex();
                 var b = 16 * color[4].FromHex();
-                
+
                 r += color[1].FromHex();
                 g += color[3].FromHex();
                 b += color[5].FromHex();
@@ -110,20 +110,20 @@ namespace ExCSS
 
                 var r = color[0].FromHex();
                 r += r * 16;
-                
+
                 var g = color[1].FromHex();
                 g += g * 16;
-                
+
                 var b = color[2].FromHex();
                 b += b * 16;
 
                 htmlColor.R = (byte)r;
                 htmlColor.G = (byte)g;
                 htmlColor.B = (byte)b;
-                
+
                 return true;
             }
-            
+
             if (color.Length == 6)
             {
                 if (!color[0].IsHex() || !color[1].IsHex() || !color[2].IsHex() ||
@@ -135,7 +135,7 @@ namespace ExCSS
                 var r = 16 * color[0].FromHex();
                 var g = 16 * color[2].FromHex();
                 var b = 16 * color[4].FromHex();
-                
+
                 r += color[1].FromHex();
                 g += color[3].FromHex();
                 b += color[5].FromHex();
@@ -143,37 +143,46 @@ namespace ExCSS
                 htmlColor.R = (byte)r;
                 htmlColor.G = (byte)g;
                 htmlColor.B = (byte)b;
-                
+
                 return true;
             }
 
             return false;
         }
 
-        public double Alpha
-        {
-            get { return A / 255.0; }
-        }
+        public double Alpha => A / 255.0;
 
         public static bool operator ==(HtmlColor a, HtmlColor b)
         {
             if (object.ReferenceEquals(a, b))
+            {
                 return true;
+            }
+
             if (object.ReferenceEquals(a, null) || object.ReferenceEquals(b, null))
+            {
                 return false;
+            }
+
             return a.GetHashCode() == b.GetHashCode();
         }
 
         public static bool operator !=(HtmlColor a, HtmlColor b)
         {
             if (object.ReferenceEquals(a, b))
+            {
                 return false;
+            }
+
             if (object.ReferenceEquals(a, null) || object.ReferenceEquals(b, null))
+            {
                 return true;
+            }
+
             return a.GetHashCode() != b.GetHashCode();
         }
 
-        public override bool Equals(Object obj)
+        public override bool Equals(object obj)
         {
             if (obj is HtmlColor)
             {
@@ -206,10 +215,12 @@ namespace ExCSS
         /// <summary>
         /// Return the shortest form possible
         /// </summary>
-        string ToCss(bool forceLong = false)
+        private string ToCss(bool forceLong = false)
         {
             if (A == 255 && !forceLong && ((R >> 4) == (R & 0x0F)) && ((G >> 4) == (G & 0x0F)) && ((B >> 4) == (B & 0x0F)))
+            {
                 return "#" + R.ToHexChar() + G.ToHexChar() + B.ToHexChar();
+            }
 
             if (A == 255)
             {
@@ -222,16 +233,19 @@ namespace ExCSS
 
         public bool Equals(HtmlColor other)
         {
-            HtmlColor o = other as HtmlColor;
+            HtmlColor o = other;
             if (o == null)
+            {
                 return false;
+            }
+
             return GetHashCode() == other.GetHashCode();
         }
 
-        private static Single HueToRgb(Single m1, Single m2, Single h)
+        private static float HueToRgb(float m1, float m2, float h)
         {
-            const Single sixth = 1f / 6f;
-            const Single third2 = 2f / 3f;
+            const float sixth = 1f / 6f;
+            const float third2 = 2f / 3f;
 
             if (h < 0f)
             {

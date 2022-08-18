@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿// MIT License. https://github.com/sst-soft/ExCSS which is a fork of https://github.com/Unity-Technologies/ExCSS.
+
 using ExCSS.Model.Extensions;
 
 // ReSharper disable once CheckNamespace
@@ -16,11 +17,11 @@ namespace ExCSS
 
         public override string Condition
         {
-            get { return _condition; }
-            set { _condition = value; }
+            get => _condition;
+            set => _condition = value;
         }
 
-        public bool IsSupported{ get; set; }
+        public bool IsSupported { get; set; }
 
         public override string ToString()
         {
@@ -31,7 +32,7 @@ namespace ExCSS
         {
             var join = friendlyFormat ? "".NewLineIndent(true, indentation + 1) : "";
 
-            var declarationList = RuleSets.Select(d => d.ToString(friendlyFormat, indentation + 1).TrimFirstLine());
+            IEnumerable<string> declarationList = RuleSets.Select(d => d.ToString(friendlyFormat, indentation + 1).TrimFirstLine());
 #if BUILD_FOR_UNITY
 			var declarations = string.Join(join, declarationList.ToArray());
 #else

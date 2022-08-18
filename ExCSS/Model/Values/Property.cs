@@ -1,3 +1,5 @@
+// MIT License. https://github.com/sst-soft/ExCSS which is a fork of https://github.com/Unity-Technologies/ExCSS.
+
 using ExCSS.Model.Extensions;
 
 // ReSharper disable once CheckNamespace
@@ -7,8 +9,8 @@ namespace ExCSS
     {
         private Term _term;
         private bool _important;
-        private int _line;
-        
+        private readonly int _line;
+
         public Property(string name, int line)
         {
             Name = name;
@@ -19,17 +21,17 @@ namespace ExCSS
 
         public Term Term
         {
-            get { return _term; }
-            set { _term = value; }
+            get => _term;
+            set => _term = value;
         }
 
         public bool Important
         {
-            get { return _important; }
-            set { _important = value; }
+            get => _important;
+            set => _important = value;
         }
 
-        public int Line { get { return _line; } }
+        public int Line => _line;
 
         public override string ToString()
         {
@@ -37,7 +39,7 @@ namespace ExCSS
         }
 
         public string ToString(bool friendlyFormat, int indentation = 0)
-        { 
+        {
             var value = Name + ":" + _term;
 
             if (_important)

@@ -1,12 +1,12 @@
+// MIT License. https://github.com/sst-soft/ExCSS which is a fork of https://github.com/Unity-Technologies/ExCSS.
 
-// ReSharper disable once CheckNamespace
 namespace ExCSS
 {
     public abstract class ConditionalRule : AggregateRule
     {
         public virtual string Condition
         {
-            get { return string.Empty; }
+            get => string.Empty;
             set { }
         }
     }

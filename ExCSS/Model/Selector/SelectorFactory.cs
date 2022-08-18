@@ -1,4 +1,5 @@
-﻿using System;
+﻿// MIT License. https://github.com/sst-soft/ExCSS which is a fork of https://github.com/Unity-Technologies/ExCSS.
+
 using System.Globalization;
 using ExCSS.Model;
 using ExCSS.Model.TextBlocks;
@@ -306,7 +307,7 @@ namespace ExCSS
                     break;
 
                 case GrammarSegment.Ident:
-                    var pseudoSelector = GetPseudoSelector(token);
+                    BaseSelector pseudoSelector = GetPseudoSelector(token);
 
                     if (pseudoSelector != null)
                     {
@@ -483,7 +484,7 @@ namespace ExCSS
 
                 case PseudoSelectorPrefix.PseudoFunctionNot:
                     {
-                        var selector = _nestedSelectorFactory.GetSelector();
+                        BaseSelector selector = _nestedSelectorFactory.GetSelector();
                         var code = string.Format("{0}({1})", PseudoSelectorPrefix.PseudoFunctionNot, selector);
                         Insert(SimpleSelector.PseudoClass(code));
                         break;
@@ -670,8 +671,7 @@ namespace ExCSS
                 }
                 else
                 {
-                    int step;
-                    if (int.TryParse(first, out step))
+                    if (int.TryParse(first, out var step))
                     {
                         selector.Step = step;
                     }
@@ -683,8 +683,7 @@ namespace ExCSS
                 }
                 else
                 {
-                    int offset;
-                    if (int.TryParse(second, out offset))
+                    if (int.TryParse(second, out var offset))
                     {
                         selector.Offset = offset;
                     }

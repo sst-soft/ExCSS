@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿// MIT License. https://github.com/sst-soft/ExCSS which is a fork of https://github.com/Unity-Technologies/ExCSS.
+
 using System.Text;
 using ExCSS.Model;
 using ExCSS.Model.Extensions;
@@ -9,10 +9,10 @@ namespace ExCSS
 {
     public sealed class DocumentRule : AggregateRule
     {
-        readonly List<Tuple<DocumentFunction, string>> _conditions;
+        private readonly List<Tuple<DocumentFunction, string>> _conditions;
 
         internal DocumentRule()
-        { 
+        {
             RuleType = RuleType.Document;
             _conditions = new List<Tuple<DocumentFunction, string>>();
         }
@@ -24,7 +24,7 @@ namespace ExCSS
                 var builder = new StringBuilder();
                 var concat = false;
 
-                foreach (var condition in _conditions)
+                foreach (Tuple<DocumentFunction, string> condition in _conditions)
                 {
                     if (concat)
                     {
@@ -62,10 +62,7 @@ namespace ExCSS
             }
         }
 
-        internal List<Tuple<DocumentFunction, string>> Conditions
-        {
-            get { return _conditions; }
-        }
+        internal List<Tuple<DocumentFunction, string>> Conditions => _conditions;
 
         public override string ToString()
         {
@@ -74,8 +71,8 @@ namespace ExCSS
 
         public override string ToString(bool friendlyFormat, int indentation = 0)
         {
-            return "@document " + ConditionText + " {" + 
-                RuleSets + 
+            return "@document " + ConditionText + " {" +
+                RuleSets +
                 "}".NewLineIndent(friendlyFormat, indentation);
         }
     }

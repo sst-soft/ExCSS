@@ -1,6 +1,7 @@
-﻿using System;
-using System.Text;
+﻿// MIT License. https://github.com/sst-soft/ExCSS which is a fork of https://github.com/Unity-Technologies/ExCSS.
+
 using System.Globalization;
+using System.Text;
 
 // ReSharper disable once CheckNamespace
 namespace ExCSS
@@ -16,26 +17,26 @@ namespace ExCSS
             Value = value;
         }
 
-        public PrimitiveTerm(UnitType unitType, Single value)
+        public PrimitiveTerm(UnitType unitType, float value)
         {
             PrimitiveType = unitType;
             Value = value;
         }
 
-        public PrimitiveTerm(string unit, Single value)
+        public PrimitiveTerm(string unit, float value)
         {
-            PrimitiveType = ConvertStringToUnitType(unit);;
+            PrimitiveType = ConvertStringToUnitType(unit); ;
             Value = value;
         }
 
-        public Single? GetFloatValue(UnitType unit)
+        public float? GetFloatValue(UnitType unit)
         {
-            if (!(Value is Single))
+            if (!(Value is float))
             {
                 return null;
             }
 
-            var quantity = (Single)Value;
+            var quantity = (float)Value;
 
             switch (unit)
             {
@@ -58,8 +59,10 @@ namespace ExCSS
                     return "url(" + Value + ")";
 
                 default:
-                    if (Value is Single)
-                        return ((Single)Value).ToString(CultureInfo.InvariantCulture) + ConvertUnitTypeToString(PrimitiveType);
+                    if (Value is float)
+                    {
+                        return ((float)Value).ToString(CultureInfo.InvariantCulture) + ConvertUnitTypeToString(PrimitiveType);
+                    }
 
                     return Value.ToString();
             }
@@ -72,17 +75,18 @@ namespace ExCSS
             var hasControl = false;
             foreach (var ch in value)
             {
-                if (Char.IsControl(ch))
+                if (char.IsControl(ch))
                 {
                     encoded.AppendFormat("\\{0:X}", Convert.ToInt32(ch));
                     hasControl = true;
                 }
                 else
+                {
                     encoded.Append(ch);
-
+                }
             }
 
-            char quoted = hasControl ? '\"' : '\'';
+            var quoted = hasControl ? '\"' : '\'';
             encoded.Insert(0, quoted);
             encoded.Append(quoted);
 

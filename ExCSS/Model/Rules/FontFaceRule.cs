@@ -1,4 +1,6 @@
-﻿using ExCSS.Model;
+﻿// MIT License. https://github.com/sst-soft/ExCSS which is a fork of https://github.com/Unity-Technologies/ExCSS.
+
+using ExCSS.Model;
 using ExCSS.Model.Extensions;
 
 // ReSharper disable once CheckNamespace
@@ -8,7 +10,7 @@ namespace ExCSS
     {
         private readonly StyleDeclaration _declarations;
 
-        public FontFaceRule() 
+        public FontFaceRule()
         {
             _declarations = new StyleDeclaration();
             RuleType = RuleType.FontFace;
@@ -20,57 +22,54 @@ namespace ExCSS
             return this;
         }
 
-        public StyleDeclaration Declarations
-        {
-            get { return _declarations; }
-        }
+        public StyleDeclaration Declarations => _declarations;
 
         public string FontFamily
         {
-            get { return _declarations.GetPropertyValue("font-family"); }
-            set { _declarations.SetProperty("font-family", value); }
+            get => _declarations.GetPropertyValue("font-family");
+            set => _declarations.SetProperty("font-family", value);
         }
 
         public string Src
         {
-            get { return _declarations.GetPropertyValue("src"); }
-            set { _declarations.SetProperty("src", value); }
+            get => _declarations.GetPropertyValue("src");
+            set => _declarations.SetProperty("src", value);
         }
 
         public string FontStyle
         {
-            get { return _declarations.GetPropertyValue("font-style"); }
-            set { _declarations.SetProperty("font-style", value); }
+            get => _declarations.GetPropertyValue("font-style");
+            set => _declarations.SetProperty("font-style", value);
         }
 
         public string FontWeight
         {
-            get { return _declarations.GetPropertyValue("font-weight"); }
-            set { _declarations.SetProperty("font-weight", value); }
+            get => _declarations.GetPropertyValue("font-weight");
+            set => _declarations.SetProperty("font-weight", value);
         }
 
         public string Stretch
         {
-            get { return _declarations.GetPropertyValue("stretch"); }
-            set { _declarations.SetProperty("stretch", value); }
+            get => _declarations.GetPropertyValue("stretch");
+            set => _declarations.SetProperty("stretch", value);
         }
 
         public string UnicodeRange
         {
-            get { return _declarations.GetPropertyValue("unicode-range"); }
-            set { _declarations.SetProperty("unicode-range", value); }
+            get => _declarations.GetPropertyValue("unicode-range");
+            set => _declarations.SetProperty("unicode-range", value);
         }
 
         public string FontVariant
         {
-            get { return _declarations.GetPropertyValue("font-variant"); }
-            set { _declarations.SetProperty("font-variant", value); }
+            get => _declarations.GetPropertyValue("font-variant");
+            set => _declarations.SetProperty("font-variant", value);
         }
 
         public string FeatureSettings
         {
-            get { return _declarations.GetPropertyValue("font-feature-settings"); }
-            set { _declarations.SetProperty("font-feature-settings", value); }
+            get => _declarations.GetPropertyValue("font-feature-settings");
+            set => _declarations.SetProperty("font-feature-settings", value);
         }
 
         public override string ToString()

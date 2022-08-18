@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
+﻿// MIT License. https://github.com/sst-soft/ExCSS which is a fork of https://github.com/Unity-Technologies/ExCSS.
+
 using System.Text;
 using ExCSS.Model;
 using ExCSS.Model.TextBlocks;
 
 // ReSharper disable once CheckNamespace
-using System;
 
 
 namespace ExCSS
@@ -34,9 +34,9 @@ namespace ExCSS
 
             SetParsingContext(ParsingContext.DataBlock);
 
-            var tokens = _lexer.Tokens;
+            IEnumerable<Block> tokens = _lexer.Tokens;
 
-            foreach (var token in tokens)
+            foreach (Block token in tokens)
             {
                 if (ParseTokenBlock(token))
                 {
@@ -57,15 +57,15 @@ namespace ExCSS
         internal static BaseSelector ParseSelector(string selector)
         {
             var tokenizer = new Lexer(new StylesheetReader(selector));
-            var tokens = tokenizer.Tokens;
+            IEnumerable<Block> tokens = tokenizer.Tokens;
             var selctor = new SelectorFactory();
 
-            foreach (var token in tokens)
+            foreach (Block token in tokens)
             {
                 selctor.Apply(token);
             }
 
-            var result = selctor.GetSelector();
+            BaseSelector result = selctor.GetSelector();
 
             return result;
         }
@@ -73,12 +73,12 @@ namespace ExCSS
         internal static RuleSet ParseRule(string css)
         {
             var parser = new Parser();
-            
 
-            var styleSheet = parser.Parse(css);
+
+            StyleSheet styleSheet = parser.Parse(css);
 
             return styleSheet.Rules.Count > 0
-                ? styleSheet.Rules[0] 
+                ? styleSheet.Rules[0]
                 : null;
         }
 
@@ -93,7 +93,7 @@ namespace ExCSS
         internal static void AppendDeclarations(StyleDeclaration list, string css, bool quirksMode = false)
         {
             var parser = new Parser();//(new StyleSheet(), new StylesheetReader(declarations))
-           
+
 
             parser.AddRuleSet(list.ParentRule ?? new StyleRule(list));
 
@@ -113,7 +113,10 @@ namespace ExCSS
             if (_isFraction)
             {
                 if (_terms.Length > 0)
+                {
                     value = new PrimitiveTerm(UnitType.Unknown, _terms[_terms.Length - 1] + "/" + value);
+                }
+
                 _terms.SetLastTerm(value);
                 _isFraction = false;
             }
@@ -237,14 +240,8 @@ namespace ExCSS
             _parsingContext = newState;
         }
 
-        internal RuleSet CurrentRule
-        {
-            get
-            {
-                return _activeRuleSets.Count > 0
+        internal RuleSet CurrentRule => _activeRuleSets.Count > 0
                     ? _activeRuleSets.Peek()
                     : null;
-            }
-        }
     }
 }

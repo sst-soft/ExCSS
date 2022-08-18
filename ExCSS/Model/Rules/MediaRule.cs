@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿// MIT License. https://github.com/sst-soft/ExCSS which is a fork of https://github.com/Unity-Technologies/ExCSS.
+
 using ExCSS.Model;
 using ExCSS.Model.Extensions;
 
@@ -9,7 +10,7 @@ namespace ExCSS
     {
         private readonly MediaTypeList _media;
 
-        public MediaRule() 
+        public MediaRule()
         {
             _media = new MediaTypeList();
             RuleType = RuleType.Media;
@@ -17,14 +18,11 @@ namespace ExCSS
 
         public override string Condition
         {
-            get { return _media.MediaType; }
-            set { _media.MediaType = value; }
+            get => _media.MediaType;
+            set => _media.MediaType = value;
         }
 
-        public MediaTypeList Media
-        {
-            get { return _media; }
-        }
+        public MediaTypeList Media => _media;
 
         public override string ToString()
         {
@@ -35,7 +33,7 @@ namespace ExCSS
         {
             var join = friendlyFormat ? "".NewLineIndent(true, indentation + 1) : "";
 
-            var declarationList = RuleSets.Select(d => d.ToString(friendlyFormat, indentation + 1).TrimFirstLine());
+            IEnumerable<string> declarationList = RuleSets.Select(d => d.ToString(friendlyFormat, indentation + 1).TrimFirstLine());
 #if BUILD_FOR_UNITY
 			var declarations = string.Join(join, declarationList.ToArray());
 #else
